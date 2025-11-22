@@ -2,8 +2,7 @@
 EZPro-Multi: Contrastive learning-enhanced multi-property prediction for enzyme engineering
 
 ## Requirements
-  * python==3.7
-  * dgl==0.6.1
+  * python==3.8
   * networkx==2.5
   * numpy==1.16.6
   * scikit-learn==0.20.3
