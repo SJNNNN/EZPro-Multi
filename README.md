@@ -25,6 +25,12 @@ All three scripts:
 - Load a pretrained model (kcat / ddG / Δsol)
 - Write the corresponding prediction as a new column into a CSV file.
 
+### Dataset
+
+You can download the dataset from the following link:
+
+[Dataset for predictions](https://drive.google.com/drive/folders/1gc94ZRgBCXghfm38N-yQBkHjNxHKqlai?ths=true)
+
 ### Example usage
 
 ```bash
@@ -44,4 +50,5 @@ python predict_sol.py \
   --input_csv cls_Embedding/pssm_positive_mutations_with_kcat.csv \
   --output_csv cls_Embedding/pssm_positive_mutations_with_kcat_ddg_sol.csv \
   --model_path models/sol.pth
+
 
