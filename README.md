@@ -1,5 +1,5 @@
 # EZPro-Multi
-EZPro-Multi: Contrastive learning-enhanced multi-property prediction for enzyme engineering
+EZPro-Multi: Contrastive Learning-Enhanced Multi-property Prediction for Enzyme Engineering
 
 ## Requirements
   * python=3.8.19 
