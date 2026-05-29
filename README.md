@@ -51,15 +51,16 @@ python predict_sol.py \
   --input_csv cls_Embedding/pssm_positive_mutations_with_kcat.csv \
   --output_csv cls_Embedding/pssm_positive_mutations_with_kcat_ddg_sol.csv \
   --model_path models/sol.pth
+```
+## Citation
 
-###  Citation
+If you use **EZPro-Multi** or find this repository useful in your research, please cite our paper:
 
-If you use EZPro-Multi or find this repository useful in your research, please cite our paper:
-
-EZPro-Multi: Contrastive Learning-Enhanced Multi-property Prediction for Enzyme Engineering
-Journal of Chemical Theory and Computation, 2026.
+**EZPro-Multi: Contrastive Learning-Enhanced Multi-property Prediction for Enzyme Engineering**
+*Journal of Chemical Theory and Computation*, 2026.
 DOI: 10.1021/acs.jctc.6c00821
 
+```bibtex
 @article{sui2026ezpromulti,
   title   = {EZPro-Multi: Contrastive Learning-Enhanced Multi-property Prediction for Enzyme Engineering},
   author  = {Sui, Jianan and Xu, Ran and Sun, Hui and Duan, Hongliang and Zheng, Liangzhen and Guo, Jingjing},
@@ -68,4 +69,6 @@ DOI: 10.1021/acs.jctc.6c00821
   doi     = {10.1021/acs.jctc.6c00821},
   url     = {https://doi.org/10.1021/acs.jctc.6c00821}
 }
+```
+
 
