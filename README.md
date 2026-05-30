@@ -27,7 +27,7 @@ For `kcat` prediction, the input CSV must also contain:
 
 ### Dataset
 
-You can download the dataset from the following link:
+You can download the kcat dataset from the following link:
 
 [Dataset for predictions](https://drive.google.com/drive/folders/1gc94ZRgBCXghfm38N-yQBkHjNxHKqlai?ths=true)
 
