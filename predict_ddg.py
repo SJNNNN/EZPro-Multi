@@ -1,38 +1,4 @@
 import os
-import tempfile
-from pathlib import Path
-def setup_tmpdir():
-    user = os.environ.get("USER", "user")
-    base_tmp = f"/data/SJNDATA/tmp/{user}"
-    hf_home = f"{base_tmp}/hf"
-
-    # 创建目录
-    Path(base_tmp).mkdir(parents=True, exist_ok=True)
-    Path(hf_home).mkdir(parents=True, exist_ok=True)
-
-    # 系统临时目录（multiprocessing / torch 用）
-    os.environ["TMPDIR"] = base_tmp
-    os.environ["TMP"] = base_tmp
-    os.environ["TEMP"] = base_tmp
-    tempfile.tempdir = base_tmp
-
-    # Hugging Face 缓存目录
-    os.environ["HF_HOME"] = hf_home
-    os.environ["HUGGINGFACE_HUB_CACHE"] = f"{hf_home}/hub"
-    os.environ["TRANSFORMERS_CACHE"] = f"{hf_home}/transformers"
-    os.environ["HF_DATASETS_CACHE"] = f"{hf_home}/datasets"
-
-    for p in [
-        os.environ["HUGGINGFACE_HUB_CACHE"],
-        os.environ["TRANSFORMERS_CACHE"],
-        os.environ["HF_DATASETS_CACHE"],
-    ]:
-        Path(p).mkdir(parents=True, exist_ok=True)
-
-    print(f"[tmp] TMPDIR = {base_tmp}")
-    print(f"[hf ] HF_HOME = {hf_home}")
-
-setup_tmpdir()
 import torch
 import numpy as np
 import pandas as pd
@@ -244,16 +210,7 @@ def main():
     model.load_state_dict(state)
     model.eval()
 
-    # Inference
-    # all_preds = []
-    # with torch.no_grad():
-    #     for feats in test_loader:
-    #         feats = feats.to(device)
-    #         # Keep the original slicing convention for the two inputs
-    #         preds, _, _, feat = model(feats[:, :1024], feats[:, 1024:2058])
-    #         all_preds.extend(preds.squeeze(-1).cpu().tolist())
-    #
-    all_preds = []
+
     all_trues = []
     feat_list = []
     with torch.no_grad():
@@ -276,12 +233,10 @@ def main():
     print(f"Test Pearson: {pearson:.4f}")
 
     # Read original CSV and write ddg column
-    df = pd.read_csv(args.input_csv)  # 建议读原始测试集 CSV，而不是 output_csv
+    df = pd.read_csv(args.input_csv)  
 
-    # 把预测值写入新列 pre_ddg
     df["pre_ddg"] = y_pred
 
-    # 保存
     df.to_csv(args.output_csv, index=False)
     print(f"Saved predictions to {args.output_csv}")
 
