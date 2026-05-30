@@ -60,7 +60,30 @@ python predict_sol.py \
   --device cuda:0
 ```
 
+### Example Usage
 
+Using `kcat` prediction on our dataset as an example:
+
+1. Download our test dataset: `test_set.csv`
+2. Run the following command:
+
+```bash
+python predict_kcat.py \
+  --input_csv data/test_set.csv \
+  --output_csv results/kcat_predictions.csv \
+  --model_path Checkpoints/kcat.pth \
+  --embed_dir Embedding/ \
+  --batch_size 64 \
+  --device cuda:0
+```
+
+3. The console should report results comparable to those in our paper:
+
+```text
+Test RMSE: 1.3262
+Test Spearman: 0.5933
+Test Pearson: 0.5573
+```
 
 ## Citation
 
