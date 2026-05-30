@@ -10,7 +10,7 @@ EZPro-Multi: Contrastive Learning-Enhanced Multi-property Prediction for Enzyme 
   * pytorch= 2.2.2 
   * tqdm=4.67.1 
 
-## Prediction scripts
+## Scripts
 
 This repository provides three command-line scripts for predicting different protein-related quantities from wild-type and mutant sequences.
 
