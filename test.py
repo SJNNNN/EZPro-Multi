@@ -1,39 +1,4 @@
 import os
-import tempfile
-from pathlib import Path
-
-
-def setup_tmpdir():
-    user = os.environ.get("USER", "user")
-    base_tmp = f"/data/SJNDATA/tmp/{user}"
-    hf_home = f"{base_tmp}/hf"
-
-    Path(base_tmp).mkdir(parents=True, exist_ok=True)
-    Path(hf_home).mkdir(parents=True, exist_ok=True)
-
-    os.environ["TMPDIR"] = base_tmp
-    os.environ["TMP"] = base_tmp
-    os.environ["TEMP"] = base_tmp
-    tempfile.tempdir = base_tmp
-
-    os.environ["HF_HOME"] = hf_home
-    os.environ["HUGGINGFACE_HUB_CACHE"] = f"{hf_home}/hub"
-    os.environ["TRANSFORMERS_CACHE"] = f"{hf_home}/transformers"
-    os.environ["HF_DATASETS_CACHE"] = f"{hf_home}/datasets"
-
-    for p in [
-        os.environ["HUGGINGFACE_HUB_CACHE"],
-        os.environ["TRANSFORMERS_CACHE"],
-        os.environ["HF_DATASETS_CACHE"],
-    ]:
-        Path(p).mkdir(parents=True, exist_ok=True)
-
-    print(f"[tmp] TMPDIR = {base_tmp}")
-    print(f"[hf ] HF_HOME = {hf_home}")
-
-
-setup_tmpdir()
-
 import argparse
 import numpy as np
 import pandas as pd
@@ -246,9 +211,6 @@ def inference(model, dataloader, device, has_labels):
             cls_logits = outputs[0]
             pred_kcat1 = outputs[1]
 
-            # 如果你的模型 outputs[2] 是 kcat2 回归结果，可以打开这一行
-            # pred_kcat2 = outputs[2]
-
             probs = torch.nn.functional.softmax(cls_logits, dim=1)
             _, cls_preds = torch.max(cls_logits, dim=1)
 
@@ -257,7 +219,6 @@ def inference(model, dataloader, device, has_labels):
 
             pred_kcat1_list.append(pred_kcat1.detach().cpu().numpy())
 
-            # 如果模型有 kcat2 预测输出，可以按需启用
             # pred_kcat2_list.append(pred_kcat2.detach().cpu().numpy())
 
             if len(outputs) > 6:
