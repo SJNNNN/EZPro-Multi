@@ -4,42 +4,6 @@
 import os
 import tempfile
 from pathlib import Path
-
-
-def setup_tmpdir():
-    user = os.environ.get("USER", "user")
-    base_tmp = f"/data/SJNDATA/tmp/{user}"
-    hf_home = f"{base_tmp}/hf"
-
-    # Create directories
-    Path(base_tmp).mkdir(parents=True, exist_ok=True)
-    Path(hf_home).mkdir(parents=True, exist_ok=True)
-
-    # System temporary directories
-    os.environ["TMPDIR"] = base_tmp
-    os.environ["TMP"] = base_tmp
-    os.environ["TEMP"] = base_tmp
-    tempfile.tempdir = base_tmp
-
-    # Hugging Face cache directories
-    os.environ["HF_HOME"] = hf_home
-    os.environ["HUGGINGFACE_HUB_CACHE"] = f"{hf_home}/hub"
-    os.environ["TRANSFORMERS_CACHE"] = f"{hf_home}/transformers"
-    os.environ["HF_DATASETS_CACHE"] = f"{hf_home}/datasets"
-
-    for p in [
-        os.environ["HUGGINGFACE_HUB_CACHE"],
-        os.environ["TRANSFORMERS_CACHE"],
-        os.environ["HF_DATASETS_CACHE"],
-    ]:
-        Path(p).mkdir(parents=True, exist_ok=True)
-
-    print(f"[tmp] TMPDIR = {base_tmp}")
-    print(f"[hf ] HF_HOME = {hf_home}")
-
-
-setup_tmpdir()
-
 import argparse
 import torch
 import numpy as np
