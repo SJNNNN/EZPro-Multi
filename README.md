@@ -24,6 +24,41 @@ For `kcat` prediction, the input CSV must also contain:
 
 - `Smiles`: substrate SMILES string
 
+
+### Dataset
+
+You can download the dataset from the following link:
+
+[Dataset for predictions](https://drive.google.com/drive/folders/1gc94ZRgBCXghfm38N-yQBkHjNxHKqlai?ths=true)
+
+### kcat Prediction Example
+
+For `kcat` prediction, you can follow the steps below:
+
+1. Download our test dataset: `test_set.csv`
+2. Run the prediction command:
+
+```bash
+python predict_kcat.py \
+  --input_csv data/test_set.csv \
+  --output_csv results/kcat_predictions.csv \
+  --model_path Checkpoints/kcat.pth \
+  --embed_dir Embedding/ \
+  --batch_size 64 \
+  --device cuda:0
+```
+
+3. You can see the evaluation results in the console, for example:
+
+```text
+Test RMSE: 1.3262
+Test Spearman: 0.5933
+Test Pearson: 0.5573
+```
+
+
+
+
 ## Usage
 
 ```bash
@@ -52,11 +87,6 @@ python predict_sol.py \
   --device cuda:0
 ```
 
-### Dataset
-
-You can download the dataset from the following link:
-
-[Dataset for predictions](https://drive.google.com/drive/folders/1gc94ZRgBCXghfm38N-yQBkHjNxHKqlai?ths=true)
 
 
 ## Citation
