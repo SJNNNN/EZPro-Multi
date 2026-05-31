@@ -85,6 +85,12 @@ Test Spearman: 0.5933
 Test Pearson: 0.5573
 ```
 
+## Contact
+
+Jianan Sui, PhD  
+Macau University of Science and Technology  
+Email: p2417703@mpu.edu.mo
+
 ## Citation
 
 If you use **EZPro-Multi** or find this repository useful in your research, please cite our paper:
