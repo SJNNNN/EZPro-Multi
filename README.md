@@ -88,7 +88,7 @@ Test Pearson: 0.5573
 ## Contact
 
 Jianan Sui, PhD  
-Macau University of Science and Technology  
+Macao Polytechnic University 
 Email: p2417703@mpu.edu.mo
 
 ## Citation
