@@ -69,19 +69,14 @@ def Seq_to_vec(sequences, ProtT5_model):
 
 
 def GetMACCSKeys(smiles_list):
-    """
-    根据输入的 SMILES 列表，生成每个分子的 MACCSKeys 特征（长度为 167）。
-    如果 SMILES 无效，则返回全0向量。
 
-    输出：np.array，每一行对应一个 SMILES 的 167 维特征。
-    """
     print("GetMACCSKeys Embedding................")
     N_smiles = len(smiles_list)
     final_values = []
 
-    # 如果所有 SMILES 均相同，仅计算一次后复制
+
     if len(set(smiles_list)) == 1:
-        # 强制转换为字符串并去除空白字符
+
         smile = str(smiles_list[0]).strip()
         if not smile or smile.lower() == "nan":
             mol = None
@@ -96,9 +91,9 @@ def GetMACCSKeys(smiles_list):
             fp_array = np.array([int(bit) for bit in fp_str])
         final_values = np.concatenate([fp_array.reshape(1, -1)] * N_smiles, axis=0)
     else:
-        # 针对不同 SMILES，使用 tqdm 添加进度条
+
         for smile in tqdm(smiles_list, desc="Processing SMILES for MACCSKeys"):
-            # 转换为字符串并去除左右空格
+
             smile = str(smile).strip()
             if not smile or smile.lower() == "nan":
                 mol = None
@@ -280,7 +275,7 @@ def get_molformer_embed(smiles_list, model_name="ibm/MoLFormer-XL-both-10pct", d
                 continue
             batch_smiles = [str(smile) for smile in batch_smiles if smile is not None]
 
-            # 然后再传递给 tokenizer
+
             batch_input = tokenizer(batch_smiles, padding=True, return_tensors="pt")
             batch_input = {k: v.to(device) for k, v in batch_input.items()}
 
